@@ -1,41 +1,38 @@
 <div class="container">
   <div class="panel panel-default">
-
     <div class="panel-heading">
       <div class="row">
-        <span class="result pull-right">05</span>
+        <span class="result pull-right">{{currentResult}}</span>
       </div>
     </div>
 
     <div class="panel-body">
       <div class="row">
-        <button class="btn-grey">C</button>
+        <button (click)="clear()" class="btn-grey">C</button>
         <button class="btn-grey">+/-</button>
         <button class="btn-grey">%</button>
-        <button class="btn-orange">÷</button>
+        <button (click)="operate('DIVIDE')" class="btn-orange">÷</button>
       </div>
       <div class="row">
-        <button class="btn-dark-grey">7</button>
-        <button class="btn-dark-grey">8</button>
-        <button class="btn-dark-grey">9</button>
-        <button class="btn-orange">×</button>
-      </div>
-
-      <div class="row">
-        <button class="btn-dark-grey">4</button>
-        <button class="btn-dark-grey">5</button>
-        <button class="btn-dark-grey">6</button>
-        <button class="btn-orange">-</button>
+        <button (click)="click(7)" class="btn-dark-grey">7</button>
+        <button (click)="click(8)" class="btn-dark-grey">8</button>
+        <button (click)="click(9)" class="btn-dark-grey">9</button>
+        <button (click)="operate('MULTIPLY')" class="btn-orange">×</button>
       </div>
 
       <div class="row">
-          <button class="btn-dark-grey">1</button>
-          <button class="btn-dark-grey">2</button>
-          <button class="btn-dark-grey">3</button>
-          <button class="btn-orange">+</button>
-        </div>
+        <button (click)="click(4)" class="btn-dark-grey">4</button>
+        <button (click)="click(5)" class="btn-dark-grey">5</button>
+        <button (click)="click(6)" class="btn-dark-grey">6</button>
+        <button (click)="operate('SUBTRACT')" class="btn-orange">-</button>
+      </div>
 
+      <div class="row">
+        <button (click)="click(1)" class="btn-dark-grey">1</button>
+        <button (click)="click(2)" class="btn-dark-grey">2</button>
+        <button (click)="click(3)" class="btn-dark-grey">3</button>
+        <button (click)="operate('ADD')" class="btn-orange">+</button>
+      </div>
     </div>
   </div>
-
 </div>
