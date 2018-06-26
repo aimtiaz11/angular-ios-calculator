@@ -1,0 +1,42 @@
+$black : black;
+$btn-grey: #A0A0A0;
+$btn-orange: #EB8E33;
+
+
+
+.container {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+.result {
+    font-size: 6em;
+    color: white;
+}
+.panel {
+    .panel-heading {
+        background-color: $black;
+        border: none;
+    }
+    background-color: $black;
+    border: none;
+}
+
+
+
+button {
+    font-size: 4em;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    margin: 40px;
+
+    border: none;
+}
+
+.btn-orange {
+    background-color: $btn-orange;
+}
+.btn-grey {
+    background-color: $btn-grey;
+}
