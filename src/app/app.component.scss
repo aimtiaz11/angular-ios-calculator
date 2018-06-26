@@ -1,12 +1,14 @@
 $black : black;
 $btn-grey: #A0A0A0;
 $btn-orange: #EB8E33;
-
 $btn-dark-grey: #333333;
 
 
 
-.container {
+
+.container,.calculator-app {
+    margin-top: 100px;
+
     font-family: Arial, Helvetica, sans-serif;
     background-color: black;
     width: 500px;

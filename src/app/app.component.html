@@ -1,14 +1,15 @@
-<div class="container">
+<div class="container calculator-app">
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="row">
-        <span class="result pull-right">{{currentResult}}</span>
+        <span class="result pull-right">{{currentNum}}</span>
       </div>
     </div>
 
     <div class="panel-body">
       <div class="row">
-        <button (click)="clear()" class="btn-grey">C</button>
+        <button *ngIf="this.currentNum != 0" (click)="clear()" class="btn-grey">C</button>
+        <button *ngIf="this.currentNum == 0" (click)="allClear()" class="btn-grey">AC</button>
         <button class="btn-grey">+/-</button>
         <button class="btn-grey">%</button>
         <button (click)="operate('DIVIDE')" class="btn-orange">÷</button>
@@ -36,12 +37,11 @@
     </div>
 
     <div>
-        <!-- <pre>currentResult: {{currentResult}}</pre>
-        <pre>operator: {{operator}}</pre>
-        <pre>previousResult: {{previousResult}}</pre>
-        <pre>lastClickedButton: {{lastClickedButton}}</pre> -->
-
-
+      <!-- Debug
+      <pre>previousNum: {{previousNum}}</pre>
+      <pre>currentNum: {{currentNum}}</pre>
+      <pre>operator: {{operator}}</pre>
+      <pre>lastClickedButton: {{lastClickedButton}}</pre> -->
 
     </div>
   </div>

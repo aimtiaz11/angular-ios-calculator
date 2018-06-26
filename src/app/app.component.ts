@@ -16,9 +16,9 @@ enum Operator {
 export class AppComponent {
 
 
-  previousResult: string = null;
+  previousNum: string = null;
 
-  currentResult = '0';
+  currentNum = '0';
 
   operator: Operator = null;
 
@@ -27,11 +27,11 @@ export class AppComponent {
    * Handles numeric click inputs.
    */
   click(n: number) {
-    if (this.lastClickedButton in Operator || this.currentResult === '0') {
-      this.currentResult = n.toString();
+    if (this.lastClickedButton in Operator || this.currentNum === '0') {
+      this.currentNum = n.toString();
     }
     else
-      this.currentResult = this.currentResult.concat(n.toString());
+      this.currentNum = this.currentNum.concat(n.toString());
 
     this.lastClickedButton = n.toString();
   }
@@ -41,24 +41,24 @@ export class AppComponent {
    * Perform the arithmetic operations based on 2 numbers and the operator entered
    */
   doCalculations(): void {
-    const num1: number = +this.currentResult;
-    const num2: number = +this.previousResult;
+    const num1: number = +this.currentNum;
+    const num2: number = +this.previousNum;
 
     switch (this.operator) {
       case Operator.ADD: {
-        this.currentResult = (num2 + num1).toString();
+        this.currentNum = (num2 + num1).toString();
         break;
       }
       case Operator.SUBTRACT: {
-        this.currentResult = (num2 - num1).toString();
+        this.currentNum = (num2 - num1).toString();
         break;
       }
       case Operator.MULTIPLY: {
-        this.currentResult = (num2 * num1).toString();
+        this.currentNum = (num2 * num1).toString();
         break;
       }
       case Operator.DIVIDE: {
-        this.currentResult = (num2 / num1).toString();
+        this.currentNum = (num2 / num1).toString();
         break;
       }
       default: {
@@ -72,21 +72,34 @@ export class AppComponent {
    * @param operator - Enum of permitted arithmetic operations
    */
   operate(operator: Operator): void {
-    this.lastClickedButton = operator;
 
-    if (this.operator != null) {
-      this.doCalculations();
+    // clicking on same operator twice
+    if (this.lastClickedButton === operator)
+      return;
+    else if (this.lastClickedButton in Operator) {
+      // if previous click was operator and this click is another operator(changing) then just change the operator
       this.operator = operator;
-    } else {
-      this.operator = operator;
+      this.lastClickedButton = operator;
+      return;
     }
 
-    this.previousResult = this.currentResult;
+    this.lastClickedButton = operator;
+
+    if (this.operator != null)
+      this.doCalculations();
+
+    this.operator = operator;
+
+    this.previousNum = this.currentNum;
   }
 
   clear(): void {
-    this.currentResult = '0';
-    this.previousResult = null;
+    this.currentNum = '0';
+  }
+
+  allClear(): void {
+    this.currentNum = '0';
+    this.previousNum = null;
     this.operator = null;
   }
 }
