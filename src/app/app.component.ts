@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
 
-
-enum Direction {
-  Up = "UP",
-  Down = "DOWN",
-  Left = "LEFT",
-  Right = "RIGHT",
-}
-
 enum Operator {
   ADD = 'ADD',
   SUBTRACT = 'SUBTRACT',
@@ -24,20 +16,24 @@ enum Operator {
 export class AppComponent {
 
 
-  previousResult: number = null;
-  currentResult = 0;
+  previousResult: string = null;
+
+  currentResult = '0';
 
   operator: Operator = null;
 
-
+  lastClickedButton: string = null;
   /**
    * Handles numeric click inputs.
    */
   click(n: number) {
-    if (this.currentResult !== 0) {
-      this.previousResult = this.currentResult;
+    if (this.lastClickedButton in Operator || this.currentResult === '0') {
+      this.currentResult = n.toString();
     }
-    this.currentResult = n;
+    else
+      this.currentResult = this.currentResult.concat(n.toString());
+
+    this.lastClickedButton = n.toString();
   }
 
 
@@ -45,21 +41,24 @@ export class AppComponent {
    * Perform the arithmetic operations based on 2 numbers and the operator entered
    */
   doCalculations(): void {
+    const num1: number = +this.currentResult;
+    const num2: number = +this.previousResult;
+
     switch (this.operator) {
       case Operator.ADD: {
-        this.currentResult = this.previousResult + this.currentResult;
+        this.currentResult = (num2 + num1).toString();
         break;
       }
       case Operator.SUBTRACT: {
-        this.currentResult = this.previousResult - this.currentResult;
+        this.currentResult = (num2 - num1).toString();
         break;
       }
       case Operator.MULTIPLY: {
-        this.currentResult = this.previousResult * this.currentResult;
+        this.currentResult = (num2 * num1).toString();
         break;
       }
       case Operator.DIVIDE: {
-        this.currentResult = this.previousResult / this.currentResult;
+        this.currentResult = (num2 / num1).toString();
         break;
       }
       default: {
@@ -73,16 +72,20 @@ export class AppComponent {
    * @param operator - Enum of permitted arithmetic operations
    */
   operate(operator: Operator): void {
+    this.lastClickedButton = operator;
+
     if (this.operator != null) {
       this.doCalculations();
       this.operator = operator;
     } else {
       this.operator = operator;
     }
+
+    this.previousResult = this.currentResult;
   }
 
   clear(): void {
-    this.currentResult = 0;
+    this.currentResult = '0';
     this.previousResult = null;
     this.operator = null;
   }
