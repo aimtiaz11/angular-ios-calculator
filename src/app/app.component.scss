@@ -1,9 +1,8 @@
+// Colors
 $black : black;
 $btn-grey: #A0A0A0;
 $btn-orange: #EB8E33;
 $btn-dark-grey: #333333;
-
-
 
 
 .container,.calculator-app {
@@ -15,6 +14,7 @@ $btn-dark-grey: #333333;
 }
 
 .result {
+    margin-right: 8px;
     font-size: 6em;
     color: white;
 }
@@ -30,7 +30,7 @@ $btn-dark-grey: #333333;
 
 
 button {
-    font-size: 4em;
+    font-size: 2.9em;
     width: 100px;
     height: 90px;
     border-radius: 50%;
@@ -54,4 +54,10 @@ button {
 .btn-dark-grey {
     background-color: $btn-dark-grey;
     color: white;
+}
+
+.long-button {
+    width: 216px;
+    border-radius: 42px;
+    text-indent: -120px;
 }

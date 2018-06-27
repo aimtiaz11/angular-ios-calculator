@@ -14,19 +14,32 @@ enum Operator {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-
+  
   previousNum: string = null;
 
+  /**
+   * currentNum reflects the result view. Initialised to 0.
+   */
   currentNum = '0';
 
+  // Which operation is being performed - Add, subtract etc.
   operator: Operator = null;
 
+  /**
+   * The very last number clicked
+   */
+  latestClickedNumber: number = null;
+
+  /**
+   * Records which button was last click. This includes numbers + operator (add, subtract)
+   */
   lastClickedButton: string = null;
+
   /**
    * Handles numeric click inputs.
    */
   click(n: number) {
+    this.latestClickedNumber = n;
     if (this.lastClickedButton in Operator || this.currentNum === '0') {
       this.currentNum = n.toString();
     }
@@ -46,19 +59,19 @@ export class AppComponent {
 
     switch (this.operator) {
       case Operator.ADD: {
-        this.currentNum = (num2 + num1).toString();
+        this.currentNum = (num2 + num1).toString().substr(0, 9);
         break;
       }
       case Operator.SUBTRACT: {
-        this.currentNum = (num2 - num1).toString();
+        this.currentNum = (num2 - num1).toString().substr(0, 9);
         break;
       }
       case Operator.MULTIPLY: {
-        this.currentNum = (num2 * num1).toString();
+        this.currentNum = (num2 * num1).toString().substr(0, 9);
         break;
       }
       case Operator.DIVIDE: {
-        this.currentNum = (num2 / num1).toString();
+        this.currentNum = (num2 / num1).toString().substr(0, 9);
         break;
       }
       default: {
@@ -93,10 +106,16 @@ export class AppComponent {
     this.previousNum = this.currentNum;
   }
 
+  /**
+   * Clears the very last entry.
+   */
   clear(): void {
     this.currentNum = '0';
   }
 
+  /**
+   * Resets the calculator back to original state.
+   */
   allClear(): void {
     this.currentNum = '0';
     this.previousNum = null;
